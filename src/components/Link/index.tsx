@@ -15,7 +15,7 @@ interface LinkProps extends LinkElementProps {
 export const AnchorLink: React.FC<LinkProps> = ({ text, ...rest }) => {
 	return (
 		<StyledLink {...rest} ref={null}>
-			<LinkSpan>{text}</LinkSpan> <ArrowSquareUpRight size={12} />
+			<LinkSpan>{text}</LinkSpan> <ArrowSquareUpRight size={14} />
 		</StyledLink>
 	)
 }
