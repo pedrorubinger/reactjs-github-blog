@@ -18,6 +18,7 @@ export const StyledLink = styled.a`
 	padding: 0px;
 	gap: 0.5rem;
 
+	border-bottom: 1px solid transparent;
 	transition: 0.25s;
 
 	& svg {
