@@ -18,7 +18,10 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body, input, textarea, button {
-    font: ${({ theme }) =>
-			`${theme.regular} ${theme.fs16} ${theme.nunito}, sans-serif`}
+    font: 400 1rem 'Nunito', sans-serif;
+  }
+
+  a, a:visited, a:hover, a:active {
+    color: inherit;
   }
 `
