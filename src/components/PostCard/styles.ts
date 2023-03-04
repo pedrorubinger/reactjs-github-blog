@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledCard = styled.div`
+export const StyledPostCard = styled.div`
 	background: ${({ theme }) => theme["base-post"]};
 	border-radius: 10px;
 	border: 1px solid transparent;
@@ -16,7 +16,7 @@ export const StyledCard = styled.div`
 	}
 `
 
-export const StyledCardHeader = styled.header`
+export const StyledPostCardHeader = styled.header`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -24,7 +24,7 @@ export const StyledCardHeader = styled.header`
 	gap: 1rem;
 `
 
-export const StyledCardTitle = styled.h3`
+export const StyledPostCardTitle = styled.h3`
 	font-style: normal;
 	font-weight: 700;
 	font-size: 1.25rem;
@@ -34,7 +34,7 @@ export const StyledCardTitle = styled.h3`
 	color: ${({ theme }) => theme["base-title"]};
 `
 
-export const StyledCardTimeAgo = styled.span`
+export const StyledPostCardTimeAgo = styled.span`
 	font-family: "Nunito";
 	font-style: normal;
 	font-weight: 400;
@@ -48,7 +48,7 @@ export const StyledCardTimeAgo = styled.span`
 	color: ${({ theme }) => theme["base-span"]};
 `
 
-export const StyledCardBody = styled.div`
+export const StyledPostCardBody = styled.div`
 	margin-top: 1.25rem;
 
 	font-family: "Nunito";
