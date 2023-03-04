@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const StyledPostCard = styled.div`
+export const StyledPostCard = styled.article`
 	background: ${({ theme }) => theme["base-post"]};
 	border-radius: 10px;
 	border: 1px solid transparent;
