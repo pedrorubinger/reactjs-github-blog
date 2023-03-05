@@ -13,7 +13,9 @@ export const defaultTheme = {
 	"base-profile": "#0B1B2B",
 	"base-background": "#071422",
 	"base-input": "#040F1A",
+	"base-highlight": "#485661",
 
+	white: "#fff",
 	// fs12: "0.75rem", // 12px
 	// fs14: "0.875rem", // 14px
 	// fs16: "1rem", // 16px
