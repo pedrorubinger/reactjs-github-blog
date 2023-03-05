@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 export const StyledInput = styled.input`
 	box-sizing: border-box;
+	width: 100%;
 
 	display: flex;
 	flex-direction: row;
@@ -10,7 +11,6 @@ export const StyledInput = styled.input`
 	gap: 0.5rem;
 
 	background: ${({ theme }) => theme["base-input"]};
-
 	border: 1px solid ${({ theme }) => theme["base-border"]};
 	border-radius: 6px;
 
