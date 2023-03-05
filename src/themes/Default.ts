@@ -1,6 +1,7 @@
 export const defaultTheme = {
 	/* COLORS */
 	blue: "#3294F8",
+	"blue-500": "#14589C",
 
 	"base-title": "#E7EDF4",
 	"base-subtitle": "#C4D4E3",
