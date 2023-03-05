@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Buildings, GithubLogo, Users } from "phosphor-react"
 
 import {
@@ -14,6 +14,7 @@ import {
 	ProfileContentFooterInfoBox,
 } from "~/components/ProfileCard/styles"
 import { AnchorLink } from "~/components/Link"
+import { ProfileCardSkeleton } from "~/components/ShimmerSkeleton"
 
 interface ProfileCardProps {
 	name: string
@@ -35,6 +36,21 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
 	company = "Não informado",
 }) => {
 	const followersLabel = followers === 1 ? "seguidor" : "seguidores"
+	const [isLoading, setIsLoading] = useState(true)
+
+	useEffect(() => {
+		setTimeout(() => setIsLoading(false), 3000)
+	}, [])
+
+	if (isLoading) {
+		return (
+			<StyledProfileCard>
+				<ProfileContent>
+					<ProfileCardSkeleton />
+				</ProfileContent>
+			</StyledProfileCard>
+		)
+	}
 
 	return (
 		<StyledProfileCard>
@@ -43,6 +59,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
 			<ProfileContent>
 				<ProfileContentHeader>
 					<ProfileName>{name}</ProfileName>
+
 					<AnchorLink text="GitHub" href={url} target="_blank" />
 				</ProfileContentHeader>
 

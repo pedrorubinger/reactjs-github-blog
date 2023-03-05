@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import {
@@ -13,6 +13,7 @@ import { ProfileCard } from "~/components/ProfileCard"
 import { SearchPosts } from "~/components/SearchPosts"
 import { PostCard } from "~/components/PostCard"
 import { EmptyPostList } from "~/components/EmptyPostList"
+import { PostListSkeleton } from "~/components/ShimmerSkeleton/PostListSkeleton"
 
 interface HomeProps {}
 
@@ -60,9 +61,20 @@ const MOCKED_DATA = [
 
 export const Home: React.FC<HomeProps> = () => {
 	const navigate = useNavigate()
-	const posts: Post[] = MOCKED_DATA
+	const [posts, setPosts] = useState<Post[]>([])
+
+	const [isLoading, setIsLoading] = useState(true)
+	const isEmpty = !posts?.length && !isLoading
+	const isFull = !!posts?.length && !isLoading
 
 	const onClickPostCard = () => navigate("/post")
+
+	useEffect(() => {
+		setTimeout(() => {
+			setIsLoading(false)
+			setPosts(MOCKED_DATA)
+		}, 3000)
+	}, [])
 
 	return (
 		<HomeContainer>
@@ -81,9 +93,11 @@ export const Home: React.FC<HomeProps> = () => {
 			<HomeContent>
 				<SearchPosts amount={posts.length} />
 
-				{!posts?.length && <EmptyPostList />}
+				{!!isLoading && <PostListSkeleton />}
 
-				{!!posts?.length && (
+				{!!isEmpty && <EmptyPostList />}
+
+				{!!isFull && (
 					<PostCardsContainer>
 						{MOCKED_DATA.map(({ id, ...rest }) => (
 							<PostCard key={id} {...rest} onClick={onClickPostCard} />
