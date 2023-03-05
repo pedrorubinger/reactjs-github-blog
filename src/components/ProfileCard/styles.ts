@@ -1,6 +1,7 @@
 import styled from "styled-components"
 
 export const StyledProfileCard = styled.div`
+	z-index: 9999;
 	background: ${({ theme }) => theme["base-profile"]};
 	border-radius: 10px;
 	border: 1px solid transparent;
@@ -13,6 +14,11 @@ export const StyledProfileCard = styled.div`
 	flex-direction: row;
 	justify-content: center;
 	gap: 2rem;
+
+	@media (max-width: 900px) {
+		border-radius: 0;
+		width: 100%;
+	}
 
 	@media (max-width: 480px) {
 		flex-direction: column;
@@ -48,6 +54,7 @@ export const ProfileName = styled.h2`
 	font-size: 1.5rem;
 	line-height: 130%;
 
+	margin-right: 1rem;
 	color: ${({ theme }) => theme["base-title"]};
 `
 
