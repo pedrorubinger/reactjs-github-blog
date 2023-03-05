@@ -1,11 +1,13 @@
 import React from "react"
 
+import { SearchPosts } from "~/components/SearchPosts"
+
 interface HomeProps {}
 
 export const Home: React.FC<HomeProps> = () => {
 	return (
 		<div>
-			<h1>Home Page</h1>
+			<SearchPosts amount={6} />
 		</div>
 	)
 }
