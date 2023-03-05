@@ -1,8 +1,8 @@
 import React from "react"
+import { useNavigate } from "react-router-dom"
 import { CalendarBlank, ChatCentered, GithubLogo } from "phosphor-react"
 
 import { getTimePassed } from "~/utils"
-import { AnchorLink } from "~/components/Link"
 import {
 	PostDetailsCardFooter,
 	PostDetailsCardFooterInfoBox,
@@ -12,6 +12,7 @@ import {
 	PostDetailsBodyCard,
 	PostDetailsTitle,
 } from "~/components/PostDetailsCard/styles"
+import { AnchorLink, ButtonLink } from "~/components/Link"
 
 interface PostDetailsCardProps {
 	url: string
@@ -30,14 +31,17 @@ export const PostDetailsCard: React.FC<PostDetailsCardProps> = ({
 	commentsAmmount = 0,
 	content,
 }) => {
+	const navigate = useNavigate()
 	const commentsAmountLabel =
 		commentsAmmount === 1 ? "comentário" : "comentários"
+
+	const onGoBack = () => navigate("/")
 
 	return (
 		<PostDetailsCardContainer>
 			<PostDetailsHeaderCard>
-				<AnchorLink href="#" text="Voltar" isGoBackLink />
-				<AnchorLink href={url} text="Ver no GitHub" />
+				<ButtonLink text="Voltar" onClick={onGoBack} />
+				<AnchorLink href={url} text="Ver no GitHub" target="_blank" />
 			</PostDetailsHeaderCard>
 
 			<PostDetailsBodyCard>
