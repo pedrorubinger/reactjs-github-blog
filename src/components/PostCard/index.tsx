@@ -9,7 +9,7 @@ import {
 	StyledPostCardTitle,
 } from "~/components/PostCard/styles"
 
-interface PostCardProps {
+interface PostCardProps extends React.HTMLAttributes<HTMLDivElement> {
 	title: string
 	publishedAt: Date
 	text: string
@@ -19,9 +19,10 @@ export const PostCard: React.FC<PostCardProps> = ({
 	publishedAt,
 	title,
 	text,
+	...rest
 }) => {
 	return (
-		<StyledPostCard>
+		<StyledPostCard {...rest}>
 			<StyledPostCardHeader>
 				<StyledPostCardTitle>{title}</StyledPostCardTitle>
 
