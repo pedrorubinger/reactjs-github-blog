@@ -1,4 +1,5 @@
 import React from "react"
+import { useNavigate } from "react-router-dom"
 
 import {
 	CoverLayoutProfileContainer,
@@ -58,7 +59,10 @@ const MOCKED_DATA = [
 ]
 
 export const Home: React.FC<HomeProps> = () => {
+	const navigate = useNavigate()
 	const posts: Post[] = MOCKED_DATA
+
+	const onClickPostCard = () => navigate("/post")
 
 	return (
 		<HomeContainer>
@@ -82,7 +86,7 @@ export const Home: React.FC<HomeProps> = () => {
 				{!!posts?.length && (
 					<PostCardsContainer>
 						{MOCKED_DATA.map(({ id, ...rest }) => (
-							<PostCard key={id} {...rest} />
+							<PostCard key={id} {...rest} onClick={onClickPostCard} />
 						))}
 					</PostCardsContainer>
 				)}
