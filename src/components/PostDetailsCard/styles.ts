@@ -1,11 +1,13 @@
 import styled from "styled-components"
 
 export const PostDetailsCardContainer = styled.div`
+	z-index: 9999;
 	background: ${({ theme }) => theme["base-profile"]};
 	box-shadow: 0px 2px 28px rgba(0, 0, 0, 0.2);
 	border-radius: 10px;
 
 	padding: 2rem;
+	width: 90%;
 	max-width: 900px;
 
 	display: flex;
@@ -18,12 +20,16 @@ export const PostDetailsCardContainer = styled.div`
 	}
 `
 
-export const PostDetailsHeaderCard = styled.header`
+export const PostDetailsHeaderCard = styled.div`
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
 
 	width: 100%;
+
+	& > :first-child {
+		margin-right: 1rem;
+	}
 `
 
 export const PostDetailsBodyCard = styled.div`
