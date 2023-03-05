@@ -1,16 +1,17 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
-export const StyledLink = styled.a`
+export const LinkBaseStyles = css`
 	font-family: "Nunito", sans-serif;
 	font-size: 0.75rem;
 	font-weight: 700;
 	line-height: 160%;
 
 	text-transform: uppercase;
-	text-decoration: none;
-
 	color: ${({ theme }) => theme.blue};
+
+	display: block;
 	width: fit-content;
+	cursor: pointer;
 
 	display: flex;
 	flex-direction: row;
@@ -22,10 +23,6 @@ export const StyledLink = styled.a`
 	transition: 0.25s;
 
 	& svg {
-		color: ${({ theme }) => theme.blue};
-	}
-
-	&:visited {
 		color: ${({ theme }) => theme.blue};
 	}
 
