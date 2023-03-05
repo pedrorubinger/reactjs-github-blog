@@ -23,6 +23,12 @@ export const CoverLogoImage = styled.img`
 export const CoverLeftEffectContainer = styled.div`
 	padding: 4.375rem 0 2.375rem 0;
 	position: absolute;
+
+	@media only screen and (max-width: 409px) {
+		& svg {
+			width: 100vw;
+		}
+	}
 `
 
 export const CoverRightEffectContainer = styled.div`
@@ -30,13 +36,19 @@ export const CoverRightEffectContainer = styled.div`
 	position: absolute;
 	right: 0;
 	z-index: 99;
+
+	@media only screen and (max-width: 409px) {
+		& svg {
+			width: 100vw;
+		}
+	}
 `
 
 export const CoverRightEffectEllipse = styled.div`
-	position: fixed;
+	position: absolute;
 	width: 50%;
 	height: 55.25px;
-	right: -25.43px;
+	right: 25.43px;
 	top: 170.14px;
 
 	background: ${({ theme }) => theme["blue-500"]};
@@ -44,7 +56,7 @@ export const CoverRightEffectEllipse = styled.div`
 `
 
 export const CoverLeftEffectEllipse = styled.div`
-	position: fixed;
+	position: absolute;
 	width: 50%;
 	height: 55.25px;
 	left: -25.43px;

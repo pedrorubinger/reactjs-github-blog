@@ -1,13 +1,7 @@
 import styled from "styled-components"
 
 export const SearchPostsContainer = styled.div`
-	max-width: 900px;
-
-	@media (max-width: 900px) {
-		width: 80%;
-	}
-
-	margin: 4.5rem auto 3rem;
+	margin: 4.5rem auto 0;
 `
 
 export const SearchPostsHeader = styled.div`

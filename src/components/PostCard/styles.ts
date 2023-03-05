@@ -6,8 +6,6 @@ export const StyledPostCard = styled.article`
 	border: 1px solid transparent;
 	padding: 2rem;
 
-	max-width: 26rem;
-
 	cursor: pointer;
 	transition: 0.25s;
 
