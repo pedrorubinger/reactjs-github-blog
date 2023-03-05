@@ -1,5 +1,5 @@
 import React from "react"
-import { ArrowSquareUpRight } from "phosphor-react"
+import { ArrowSquareUpRight, CaretLeft } from "phosphor-react"
 
 import { LinkSpan, StyledLink } from "~/components/Link/styles"
 
@@ -10,12 +10,20 @@ type LinkElementProps = React.DetailedHTMLProps<
 
 interface LinkProps extends LinkElementProps {
 	text?: string
+	/** @default false */
+	isGoBackLink?: boolean
 }
 
-export const AnchorLink: React.FC<LinkProps> = ({ text, ...rest }) => {
+export const AnchorLink: React.FC<LinkProps> = ({
+	text,
+	isGoBackLink = false,
+	...rest
+}) => {
 	return (
 		<StyledLink {...rest} ref={null}>
-			<LinkSpan>{text}</LinkSpan> <ArrowSquareUpRight size={14} />
+			{!!isGoBackLink && <CaretLeft size={14} />}
+			<LinkSpan>{text}</LinkSpan>{" "}
+			{!isGoBackLink && <ArrowSquareUpRight size={14} />}
 		</StyledLink>
 	)
 }
