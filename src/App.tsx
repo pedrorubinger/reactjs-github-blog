@@ -1,15 +1,18 @@
 import { ThemeProvider } from "styled-components"
 import { BrowserRouter } from "react-router-dom"
 
+import { Router } from "~/Router"
 import { defaultTheme } from "~/themes/Default"
 import { GlobalStyles } from "~/themes/Global"
-import { Router } from "~/Router"
+import { ProfileProvider } from "~/contexts/ProfileContext"
 
 const App = () => {
 	return (
 		<ThemeProvider theme={defaultTheme}>
 			<BrowserRouter>
-				<Router />
+				<ProfileProvider>
+					<Router />
+				</ProfileProvider>
 			</BrowserRouter>
 
 			<GlobalStyles />
