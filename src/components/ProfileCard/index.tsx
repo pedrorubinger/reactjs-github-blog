@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React, { useCallback, useContext, useEffect } from "react"
 import { Buildings, GithubLogo, Users } from "phosphor-react"
 
+import { ProfileContext } from "~/contexts/ProfileContext"
 import {
 	ProfileBio,
 	ProfileContent,
@@ -16,33 +17,22 @@ import {
 import { AnchorLink } from "~/components/Link"
 import { ProfileCardSkeleton } from "~/components/ShimmerSkeleton"
 
-interface ProfileCardProps {
-	name: string
-	avatar: string
-	url: string
-	username: string
-	followers: number
-	bio?: string
-	company?: string
-}
+interface ProfileCardProps {}
 
-export const ProfileCard: React.FC<ProfileCardProps> = ({
-	name,
-	url,
-	avatar,
-	username,
-	followers = 0,
-	bio = "Este usuário não possui uma biografia pública.",
-	company = "Não informado",
-}) => {
-	const followersLabel = followers === 1 ? "seguidor" : "seguidores"
-	const [isLoading, setIsLoading] = useState(true)
+export const ProfileCard: React.FC<ProfileCardProps> = () => {
+	const { isFetchingProfile, profile, fetchProfile } =
+		useContext(ProfileContext)
+	const followersLabel = profile?.followers === 1 ? "seguidor" : "seguidores"
 
-	useEffect(() => {
-		setTimeout(() => setIsLoading(false), 3000)
+	const fetchData = useCallback(async (): Promise<void> => {
+		await fetchProfile("pedrorubinger")
 	}, [])
 
-	if (isLoading) {
+	useEffect(() => {
+		void fetchData()
+	}, [fetchData])
+
+	if (isFetchingProfile) {
 		return (
 			<StyledProfileCard>
 				<ProfileContent>
@@ -52,37 +42,45 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
 		)
 	}
 
+	if (!profile) {
+		return null
+	}
+
 	return (
 		<StyledProfileCard>
-			<ProfileImage src={avatar} alt="" />
+			<ProfileImage src={profile.avatar_url} alt="" />
 
 			<ProfileContent>
 				<ProfileContentHeader>
-					<ProfileName>{name}</ProfileName>
+					<ProfileName>{profile.name}</ProfileName>
 
-					<AnchorLink text="GitHub" href={url} target="_blank" />
+					<AnchorLink text="GitHub" href={profile.html_url} target="_blank" />
 				</ProfileContentHeader>
 
 				<ProfileContentBody>
-					<ProfileBio>{bio}</ProfileBio>
+					<ProfileBio>
+						{profile?.bio ?? "Este usuário não possui uma biografia pública."}
+					</ProfileBio>
 				</ProfileContentBody>
 
 				<ProfileContentFooter>
 					<ProfileContentFooterInfoBox>
 						<GithubLogo size={18} />
-						<ProfileContentInfoText>{username}</ProfileContentInfoText>
+						<ProfileContentInfoText>{profile.login}</ProfileContentInfoText>
 					</ProfileContentFooterInfoBox>
 
 					<ProfileContentFooterInfoBox>
 						<Buildings size={18} />
-						<ProfileContentInfoText>{company}</ProfileContentInfoText>
+						<ProfileContentInfoText>
+							{profile?.company ?? "Não informado"}
+						</ProfileContentInfoText>
 					</ProfileContentFooterInfoBox>
 
 					<ProfileContentFooterInfoBox>
 						<Users size={18} />
 
 						<ProfileContentInfoText>
-							{followers} {followersLabel}
+							{profile.followers} {followersLabel}
 						</ProfileContentInfoText>
 					</ProfileContentFooterInfoBox>
 					{/* END OF COMPONENT */}

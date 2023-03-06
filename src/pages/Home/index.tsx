@@ -79,15 +79,7 @@ export const Home: React.FC<HomeProps> = () => {
 	return (
 		<HomeContainer>
 			<CoverLayoutProfileContainer>
-				<ProfileCard
-					followers={8}
-					avatar={GenericAvatar}
-					name="Pedro Rubinger"
-					username="pedrorubinger"
-					company="Luby Software"
-					url="https://github.com/pedrorubinger"
-					bio="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse cum numquam nemo nisi quia eos expedita, commodi qui autem et officiis vel assumenda dolor libero quos dolorum, consequatur nihil quod."
-				/>
+				<ProfileCard />
 			</CoverLayoutProfileContainer>
 
 			<HomeContent>
