@@ -79,6 +79,8 @@ export const ProfileContentFooter = styled.footer`
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0 1.5rem;
+	flex: 1;
+	align-items: flex-end;
 `
 
 export const ProfileContentFooterInfoBox = styled.div`
