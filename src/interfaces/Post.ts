@@ -3,4 +3,5 @@ export interface Post {
 	publishedAt: Date
 	text: string
 	title: string
+	commentsAmount: number
 }
