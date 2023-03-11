@@ -44,3 +44,6 @@ export const getTimePassed = (startDate: Date, endDate: Date = new Date()) => {
 		return `Há ${seconds} segundo${seconds === 1 ? "" : "s"}`
 	}
 }
+
+export * from "~/utils/removeMarkdownFormatting"
+export * from "~/utils/formatPost"
