@@ -4,15 +4,19 @@ import { Post } from "~/interfaces"
 import { getRepoIssues, searchRepoIssues } from "~/services/requests"
 import { formatPost } from "~/utils"
 
+type SelectedPost = Post | null
+
 interface PostProviderProps {
 	children: React.ReactNode
 }
 
 interface PostContextType {
 	posts: Post[]
+	selectedPost: Post | null
 	isFetchingPosts: boolean
 	fetchPosts: () => Promise<void>
 	fetchIssues: (query: string) => Promise<void>
+	selectPost: (post: SelectedPost) => void
 }
 
 const Definitions = {
@@ -24,7 +28,10 @@ export const PostContext = createContext({} as PostContextType)
 
 export const PostProvider = ({ children }: PostProviderProps) => {
 	const [posts, setPosts] = useState<Post[]>([])
+	const [selectedPost, setSelectedPost] = useState<SelectedPost>(null)
 	const [isFetchingPosts, setIsFetchingPost] = useState(false)
+
+	const selectPost = (post: SelectedPost) => setSelectedPost(post)
 
 	const fetchIssues = useCallback(async (query: string) => {
 		setIsFetchingPost(true)
@@ -61,7 +68,14 @@ export const PostProvider = ({ children }: PostProviderProps) => {
 
 	return (
 		<PostContext.Provider
-			value={{ isFetchingPosts, posts, fetchPosts, fetchIssues }}
+			value={{
+				isFetchingPosts,
+				posts,
+				selectedPost,
+				fetchPosts,
+				fetchIssues,
+				selectPost,
+			}}
 		>
 			{children}
 		</PostContext.Provider>
