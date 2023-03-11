@@ -19,6 +19,7 @@ interface SearchPostsProps {}
 
 export const SearchPosts: React.FC<SearchPostsProps> = () => {
 	const timeout = useRef<NodeJS.Timeout | undefined>()
+	const isFirstUseEffectRender = useRef<boolean>(true)
 	const { posts, fetchIssues } = useContext(PostContext)
 
 	const [search, setSearch] = useState<string>("")
@@ -27,6 +28,10 @@ export const SearchPosts: React.FC<SearchPostsProps> = () => {
 	const amountLabel = amount === 1 ? "publicação" : "publicações"
 
 	const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (isFirstUseEffectRender.current) {
+			isFirstUseEffectRender.current = false
+		}
+
 		setSearch(e.target.value)
 	}
 
@@ -38,7 +43,7 @@ export const SearchPosts: React.FC<SearchPostsProps> = () => {
 	)
 
 	useEffect(() => {
-		if (search) {
+		if (!isFirstUseEffectRender.current) {
 			timeout.current = setTimeout(() => {
 				void searchIssues(search)
 			}, 1200)
@@ -47,7 +52,7 @@ export const SearchPosts: React.FC<SearchPostsProps> = () => {
 		return () => {
 			clearTimeout(timeout.current)
 		}
-	}, [searchIssues, search])
+	}, [search, searchIssues])
 
 	return (
 		<SearchPostsContainer>
