@@ -1,5 +1,7 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 
+import { PostContext } from "~/contexts"
 import {
 	CoverLayoutPostDetailsContainer,
 	PostContainer,
@@ -9,16 +11,31 @@ import { PostDetailsCard } from "~/components/PostDetailsCard"
 interface PostProps {}
 
 export const Post: React.FC<PostProps> = () => {
+	const navigate = useNavigate()
+	const { id } = useParams()
+	const { selectedPost } = useContext(PostContext)
+
+	/** TO DO
+	 *  ------------------------------------------------------------------
+	 * 	If 'selectedPost' is null, attempt to retrieve a post based on the
+	 *  route id parameter. If the post does not exist,
+	 * 	display an appropriate message.	*/
+	useEffect(() => {
+		if (!selectedPost) navigate("/")
+	}, [selectedPost])
+
+	if (!selectedPost) return null
+
 	return (
 		<PostContainer>
 			<CoverLayoutPostDetailsContainer>
 				<PostDetailsCard
 					username="pedrorubinger"
 					url="https://github.com/pedrorubinger"
-					title="TypeScript data types and data structures"
-					content="Programming languages all have built-in data structures, but these often differ from one language to another."
-					publishedAt={new Date("2022-12-22T19:44:09")}
-					commentsAmmount={1}
+					title={selectedPost.title}
+					content={selectedPost.text}
+					commentsAmmount={selectedPost.commentsAmount}
+					publishedAt={new Date(selectedPost.publishedAt)}
 				/>
 			</CoverLayoutPostDetailsContainer>
 		</PostContainer>
