@@ -1,4 +1,4 @@
-import { GitHubProfileData } from "~/interfaces/GitHubProfileData"
+import { GitHubProfileData } from "~/interfaces"
 
 export interface GetUserProfileResponse {
 	success: boolean
