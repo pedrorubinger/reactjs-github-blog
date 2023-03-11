@@ -5,13 +5,16 @@ import { Router } from "~/Router"
 import { defaultTheme } from "~/themes/Default"
 import { GlobalStyles } from "~/themes/Global"
 import { ProfileProvider } from "~/contexts/ProfileContext"
+import { PostProvider } from "./contexts"
 
 const App = () => {
 	return (
 		<ThemeProvider theme={defaultTheme}>
 			<BrowserRouter>
 				<ProfileProvider>
-					<Router />
+					<PostProvider>
+						<Router />
+					</PostProvider>
 				</ProfileProvider>
 			</BrowserRouter>
 
