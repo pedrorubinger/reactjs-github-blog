@@ -33,7 +33,7 @@ export const Post: React.FC<PostProps> = () => {
 					username="pedrorubinger"
 					url="https://github.com/pedrorubinger"
 					title={selectedPost.title}
-					content={selectedPost.text}
+					content={selectedPost.rawText}
 					commentsAmmount={selectedPost.commentsAmount}
 					publishedAt={new Date(selectedPost.publishedAt)}
 				/>
