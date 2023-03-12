@@ -1,6 +1,8 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import { CalendarBlank, ChatCentered, GithubLogo } from "phosphor-react"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 
 import { getTimePassed } from "~/utils"
 import {
@@ -11,6 +13,8 @@ import {
 	PostDetailsHeaderCard,
 	PostDetailsBodyCard,
 	PostDetailsTitle,
+	PostMetaDetailsContainer,
+	PostDetailsContentContainer,
 } from "~/components/PostDetailsCard/styles"
 import { AnchorLink, ButtonLink } from "~/components/Link"
 
@@ -39,38 +43,44 @@ export const PostDetailsCard: React.FC<PostDetailsCardProps> = ({
 
 	return (
 		<PostDetailsCardContainer>
-			<PostDetailsHeaderCard>
-				<ButtonLink text="Voltar" onClick={onGoBack} />
-				<AnchorLink href={url} text="Ver no GitHub" target="_blank" />
-			</PostDetailsHeaderCard>
+			<PostMetaDetailsContainer>
+				<PostDetailsHeaderCard>
+					<ButtonLink text="Voltar" onClick={onGoBack} />
+					<AnchorLink href={url} text="Ver no GitHub" target="_blank" />
+				</PostDetailsHeaderCard>
 
-			<PostDetailsBodyCard>
-				<PostDetailsTitle>{title}</PostDetailsTitle>
-			</PostDetailsBodyCard>
+				<PostDetailsBodyCard>
+					<PostDetailsTitle>{title}</PostDetailsTitle>
+				</PostDetailsBodyCard>
 
-			<PostDetailsCardFooter>
-				<PostDetailsCardFooterInfoBox>
-					<GithubLogo size={18} />
-					<PostDetailsCardInfoText>{username}</PostDetailsCardInfoText>
-				</PostDetailsCardFooterInfoBox>
+				<PostDetailsCardFooter>
+					<PostDetailsCardFooterInfoBox>
+						<GithubLogo size={18} />
+						<PostDetailsCardInfoText>{username}</PostDetailsCardInfoText>
+					</PostDetailsCardFooterInfoBox>
 
-				<PostDetailsCardFooterInfoBox>
-					<CalendarBlank size={18} />
-					<PostDetailsCardInfoText>
-						{getTimePassed(publishedAt)}
-					</PostDetailsCardInfoText>
-				</PostDetailsCardFooterInfoBox>
+					<PostDetailsCardFooterInfoBox>
+						<CalendarBlank size={18} />
+						<PostDetailsCardInfoText>
+							{getTimePassed(publishedAt)}
+						</PostDetailsCardInfoText>
+					</PostDetailsCardFooterInfoBox>
 
-				<PostDetailsCardFooterInfoBox>
-					<ChatCentered size={18} />
+					<PostDetailsCardFooterInfoBox>
+						<ChatCentered size={18} />
 
-					<PostDetailsCardInfoText>
-						{commentsAmmount} {commentsAmountLabel}
-					</PostDetailsCardInfoText>
-				</PostDetailsCardFooterInfoBox>
+						<PostDetailsCardInfoText>
+							{commentsAmmount} {commentsAmountLabel}
+						</PostDetailsCardInfoText>
+					</PostDetailsCardFooterInfoBox>
+					{/* END OF COMPONENT */}
+				</PostDetailsCardFooter>
 				{/* END OF COMPONENT */}
-			</PostDetailsCardFooter>
-			{/* END OF COMPONENT */}
+			</PostMetaDetailsContainer>
+
+			<PostDetailsContentContainer>
+				<ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+			</PostDetailsContentContainer>
 		</PostDetailsCardContainer>
 	)
 }
